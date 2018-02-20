@@ -33,3 +33,5 @@ node_modules/
 generated/
 */src/main/resources/templates/index.html
 *.db
+.nyc_output/
+ci/
