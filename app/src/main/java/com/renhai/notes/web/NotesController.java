@@ -4,7 +4,6 @@ import com.renhai.notes.entity.Note;
 import com.renhai.notes.service.NoteService;
 import com.renhai.notes.web.dto.NoteRequestDto;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -30,11 +29,8 @@ public class NotesController {
 		return "redirect:/" + id;
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/{id:[a-zA-Z0-9]+}")
 	public String index(@PathVariable String id) throws Exception {
-		if (!StringUtils.isAlphanumeric(id)) {
-			return "redirect:/error";
-		}
 		Note note = noteService.getNote(id);
 		if (note == null) {
 			noteService.createNote(id, null);
@@ -43,14 +39,14 @@ public class NotesController {
 	}
 
 
-	@GetMapping(value = "/api/notes/{id}")
+	@GetMapping(value = "/api/notes/{id:[a-zA-Z0-9]+}")
 	@ResponseBody
 	public ResponseEntity notes(@PathVariable String id) throws Exception {
 		Note note = noteService.getNote(id);
 		return ResponseEntity.ok(note);
 	}
 
-	@PostMapping(value = "/api/notes/{id}")
+	@PostMapping(value = "/api/notes/{id:[a-zA-Z0-9]+}")
 	@ResponseBody
 	public ResponseEntity notes(@PathVariable String id, @RequestBody NoteRequestDto notes) throws Exception {
 		Note note = noteService.updateNotes(id, notes.getNotes());
@@ -58,7 +54,7 @@ public class NotesController {
 		return ResponseEntity.ok(note);
 	}
 
-	@GetMapping("/{id}/download")
+	@GetMapping("/{id:[a-zA-Z0-9]+}/download")
 	public void download(@PathVariable String id, HttpServletResponse response)
 		throws Exception {
 		Note note = noteService.getNote(id);

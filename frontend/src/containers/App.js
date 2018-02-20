@@ -2,6 +2,7 @@ import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { connect } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
+import 'bulma/css/bulma.css';
 import {Header, Footer } from '../components/index';
 import messages from '../messages/index';
 

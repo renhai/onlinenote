@@ -17,7 +17,6 @@ export default function reducer(state = initialState, { type, payload }) {
       toast.error(errorMessage);
       return state;
     case 'SAVE_NOTES_SUCCESS':
-      toast.success('Saved');
       return state;
     case 'SAVE_NOTES_ERROR':
       toast.error(errorMessage);
