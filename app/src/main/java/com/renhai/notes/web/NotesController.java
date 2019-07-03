@@ -29,20 +29,23 @@ public class NotesController {
 		return "redirect:/" + id;
 	}
 
-	@GetMapping("/{id:[a-zA-Z0-9]+}")
-	public String index(@PathVariable String id) throws Exception {
-		Note note = noteService.getNote(id);
-		if (note == null) {
-			noteService.createNote(id, null);
-		}
-		return "index";
-	}
+//	@GetMapping("/{id:[a-zA-Z0-9]+}")
+//	public String index(@PathVariable String id) throws Exception {
+//		Note note = noteService.getNote(id);
+//		if (note == null) {
+//			noteService.createNote(id, null);
+//		}
+//		return "index";
+//	}
 
 
 	@GetMapping(value = "/api/notes/{id:[a-zA-Z0-9]+}")
 	@ResponseBody
 	public ResponseEntity notes(@PathVariable String id) throws Exception {
 		Note note = noteService.getNote(id);
+		if (note == null) {
+			note = noteService.createNote(id, null);
+		}
 		return ResponseEntity.ok(note);
 	}
 
