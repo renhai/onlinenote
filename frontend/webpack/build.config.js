@@ -53,7 +53,7 @@ export default {
     }),
     new ExtractTextPlugin('dist/[name]/[chunkhash].css', { allChunks: true }),
     new HtmlWebpackPlugin({
-      filename: '../templates/index.html',
+      filename: '../static/index.html',
       template: 'src/index.html',
       inject: false
     })

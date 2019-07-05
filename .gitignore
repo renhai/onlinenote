@@ -31,7 +31,7 @@ node_modules/
 *.log
 
 generated/
-*/src/main/resources/templates/index.html
 *.db
 .nyc_output/
 ci/
+/app/src/main/resources/static/

@@ -30,7 +30,7 @@ public class WebApplicationConfig extends WebMvcConfigurerAdapter {
                         Resource requestedResource = location.createRelative(resourcePath);
                         return requestedResource.exists() && requestedResource.isReadable()
                                 ? requestedResource
-                                : new ClassPathResource("/templates/index.html");
+                                : new ClassPathResource("/static/index.html");
                     }
                 });
 

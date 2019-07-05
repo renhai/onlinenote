@@ -11,14 +11,15 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf ../app/src/main/resources/static/dist ../app/src/main/resources/templates/index.html ci",
+    "clean": "rimraf ../app/src/main/resources/static ci",
     "lint": "eslint src test --fix",
     "lint:checkstyle": "mkdirp ci && eslint src --format checkstyle > ci/checkstyle.xml; exit 0",
     "test": "mocha",
     "coverage": "cross-env NODE_ENV=test nyc mocha --reporter mocha-junit-reporter --reporter-options mochaFile=./ci/test-results.xml",
     "dev": "cross-env PROFILE=local node index.js",
     "prebuild": "npm run clean",
-    "build": "NODE_ENV=production webpack --verbose --colors --display-error-details --config webpack/build.js",
+    "copy-assets": "node scripts/copy-assets.js",
+    "build": "NODE_ENV=production webpack --verbose --colors --display-error-details --config webpack/build.js && npm run copy-assets",
     "prestart": "pm2 ping",
     "start": "pm2 start app.json --no-daemon",
     "stop": "pm2 stop app.json && pm2 delete app.json"
@@ -103,6 +104,7 @@
     "webpack": "1.13.1",
     "webpack-combine-loaders": "2.0.0",
     "webpack-dev-middleware": "1.6.1",
-    "webpack-hot-middleware": "2.13.1"
+    "webpack-hot-middleware": "2.13.1",
+    "shelljs": "^0.8.3"
   }
 }
